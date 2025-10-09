@@ -17,171 +17,35 @@
     <div class="background-gradient"></div>
     <div class="grid-background"></div>
 
-    <nav class="modern-navbar" id="modernNavbar">
-    <div class="nav-container">
-        <!-- Logo com animação -->
-        <div class="logo-container">
-            <a href="index.html" class="modern-logo">
-                <span class="logo-bracket">&lt;</span>
-                <span class="logo-text">Dev</span>
-                <span class="logo-bracket">/&gt;</span>
-                <div class="logo-glow"></div>
-            </a>
-        </div>
-        
-        <!-- Menu Desktop Moderno -->
-        <div class="nav-menu-container">
-            <ul class="modern-nav-menu" id="modernNavMenu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link" data-text="Início">
-                        <span class="nav-icon">🏠</span>
-                        <span class="nav-text">Início</span>
-                        <div class="nav-indicator"></div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="sobre.html" class="nav-link" data-text="Sobre">
-                        <span class="nav-icon">👨‍💻</span>
-                        <span class="nav-text">Sobre</span>
-                        <div class="nav-indicator"></div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projetos" class="nav-link" data-text="Projetos">
-                        <span class="nav-icon">🚀</span>
-                        <span class="nav-text">Projetos</span>
-                        <div class="nav-indicator"></div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="blog.html" class="nav-link" data-text="Blog">
-                        <span class="nav-icon">📝</span>
-                        <span class="nav-text">Blog</span>
-                        <div class="nav-indicator"></div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#habilidades" class="nav-link" data-text="Skills">
-                        <span class="nav-icon">⚡</span>
-                        <span class="nav-text">Skills</span>
-                        <div class="nav-indicator"></div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="contato.html" class="nav-link cta-link" data-text="Contato">
-                        <span class="nav-icon">💬</span>
-                        <span class="nav-text">Contato</span>
-                        <div class="cta-glow"></div>
-                    </a>
-                </li>
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">&lt;/Dev&gt;</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home" class="nav-link">Início</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="index.html#projetos" class="nav-link active">Projetos</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#habilidades" class="nav-link">Habilidades</a></li>
+                <li><a href="contato.html">Contato</a></li>
             </ul>
-        </div>
-        
-        <!-- Controles Modernos -->
-        <div class="nav-controls">
-            <!-- Theme Toggle Moderno -->
-            <button class="theme-toggle-modern" id="themeToggleModern" aria-label="Alternar tema">
-                <div class="theme-icon-container">
-                    <span class="theme-icon sun-icon">☀️</span>
-                    <span class="theme-icon moon-icon">🌙</span>
-                </div>
-                <div class="theme-toggle-bg"></div>
-            </button>
-            
-            <!-- Menu Mobile Moderno -->
-            <button class="mobile-menu-modern" id="mobileMenuModern" aria-label="Menu">
-                <div class="hamburger-modern">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </div>
-                <div class="menu-text">MENU</div>
-            </button>
-        </div>
-    </div>
-    
-    <!-- Indicador de Scroll -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-</nav>
-
-<!-- Menu Mobile Overlay Moderno -->
-<div class="mobile-overlay" id="mobileOverlay">
-    <div class="mobile-menu-modern-container">
-        <!-- Header do Menu Mobile -->
-        <div class="mobile-menu-header">
-            <div class="mobile-logo">
-                <span>&lt;/Dev&gt;</span>
+            <div class="theme-toggle" id="themeToggle">
+                <span>🌙</span> Tema
             </div>
-            <button class="mobile-close" id="mobileClose">
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
                 <span></span>
                 <span></span>
-            </button>
-        </div>
-        
-        <!-- Links do Menu Mobile -->
-        <nav class="mobile-nav">
-            <a href="#home" class="mobile-nav-link" data-index="01">
-                <span class="mobile-nav-icon">🏠</span>
-                <span class="mobile-nav-text">Início</span>
-                <span class="mobile-nav-arrow">→</span>
-            </a>
-            <a href="sobre.html" class="mobile-nav-link" data-index="02">
-                <span class="mobile-nav-icon">👨‍💻</span>
-                <span class="mobile-nav-text">Sobre Mim</span>
-                <span class="mobile-nav-arrow">→</span>
-            </a>
-            <a href="#projetos" class="mobile-nav-link" data-index="03">
-                <span class="mobile-nav-icon">🚀</span>
-                <span class="mobile-nav-text">Projetos</span>
-                <span class="mobile-nav-arrow">→</span>
-            </a>
-            <a href="blog.html" class="mobile-nav-link" data-index="04">
-                <span class="mobile-nav-icon">📝</span>
-                <span class="mobile-nav-text">Blog</span>
-                <span class="mobile-nav-arrow">→</span>
-            </a>
-            <a href="#habilidades" class="mobile-nav-link" data-index="05">
-                <span class="mobile-nav-icon">⚡</span>
-                <span class="mobile-nav-text">Habilidades</span>
-                <span class="mobile-nav-arrow">→</span>
-            </a>
-            <a href="contato.html" class="mobile-nav-link" data-index="06">
-                <span class="mobile-nav-icon">💬</span>
-                <span class="mobile-nav-text">Contato</span>
-                <span class="mobile-nav-arrow">→</span>
-            </a>
-        </nav>
-        
-        <!-- Footer do Menu Mobile -->
-        <div class="mobile-menu-footer">
-            <div class="mobile-social">
-                <a href="#" class="mobile-social-link">
-                    <span>📱</span>
-                </a>
-                <a href="#" class="mobile-social-link">
-                    <span>💼</span>
-                </a>
-                <a href="#" class="mobile-social-link">
-                    <span>🐦</span>
-                </a>
-                <a href="#" class="mobile-social-link">
-                    <span>✉️</span>
-                </a>
-            </div>
-            <div class="mobile-footer-text">
-                <p>Desenvolvedor Full Stack</p>
-                <p>Criando experiências digitais</p>
+                <span></span>
             </div>
         </div>
-    </div>
-    
-    <!-- Decoração do Menu Mobile -->
-    <div class="mobile-decoration">
-        <div class="mobile-circle mobile-circle-1"></div>
-        <div class="mobile-circle mobile-circle-2"></div>
-        <div class="mobile-circle mobile-circle-3"></div>
-    </div>
-</div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html#home">Início</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="index.html#projetos">Projetos</a>
+            <a href="blog.html">Blog</a>
+            <a href="index.html#habilidades">Habilidades</a>
+            <a href="contato.html">Contato</a>
+        </div>
+    </nav>
 
     <main class="main-content">
         <div class="container">
