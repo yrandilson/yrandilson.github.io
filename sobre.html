@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Mim - Desenvolvedor Full Stack</title>
+    <meta name="description" content="Conheça minha trajetória como desenvolvedor full stack, experiências, formação e paixão por tecnologia.">
+    <meta name="keywords" content="sobre, desenvolvedor, full stack, trajetória, experiência, formação">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/shared.css">
+    
+    <style>
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 50px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 50px;
+        }
+
+        .timeline-content {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.2);
+            border-color: var(--primary);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -15px;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-left-color: rgba(15, 23, 42, 0.8);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: -15px;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-right-color: rgba(15, 23, 42, 0.8);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 4px solid var(--dark);
+            z-index: 10;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .timeline-description {
+            color: rgba(248, 250, 252, 0.8);
+            line-height: 1.6;
+        }
+
+        .stats-personal {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .stat-personal {
+            text-align: center;
+            padding: 30px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-personal:hover {
+            transform: translateY(-5px);
+            background: rgba(99, 102, 241, 0.15);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .stat-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+
+        .stat-desc {
+            color: rgba(248, 250, 252, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .skills-detailed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .skill-detailed {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-detailed:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            border-color: var(--primary);
+        }
+
+        .skill-detailed h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .skill-detailed-icon {
+            font-size: 2rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag-detailed {
+            background: rgba(99, 102, 241, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+            color: var(--light);
+        }
+
+        .skill-tag-detailed:hover {
+            background: rgba(99, 102, 241, 0.3);
+            transform: scale(1.05);
+        }
+
+        .personal-info {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: start;
+            margin: 60px 0;
+        }
+
+        .profile-image {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 50%);
+        }
+
+        .bio-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .bio-content p {
+            color: rgba(248, 250, 252, 0.8);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .interests {
+            margin-top: 40px;
+        }
+
+        .interests h4 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .interest-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .interest-item {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: var(--light);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .interest-item:hover {
+            background: rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .certifications {
+            margin-top: 60px;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .cert-card {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+            border-color: var(--primary);
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .cert-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+
+        .cert-issuer {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .cert-date {
+            color: rgba(248, 250, 252, 0.6);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 70px !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-item .timeline-dot {
+                left: 20px !important;
+                right: auto !important;
+            }
+
+            .timeline-content::after {
+                display: none;
+            }
+
+            .personal-info {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .profile-image {
+                max-width: 300px;
+                margin: 0 auto;
+                font-size: 6rem;
+            }
+
+            .stats-personal {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .skills-detailed {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-personal {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image {
+                max-width: 250px;
+                font-size: 5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-gradient"></div>
+    <div class="grid-background"></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">&lt;/Dev&gt;</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home" class="nav-link">Início</a></li>
+                <li><a href="sobre.html" class="nav-link active">Sobre</a></li>
+                <li><a href="index.html#projetos" class="nav-link">Projetos</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#habilidades" class="nav-link">Habilidades</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <div class="theme-toggle" id="themeToggle">
+                <span>🌙</span> Tema
+            </div>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html#home">Início</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="index.html#projetos">Projetos</a>
+            <a href="blog.html">Blog</a>
+            <a href="index.html#habilidades">Habilidades</a>
+            <a href="contato.html">Contato</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Início</a>
+                <span>→</span>
+                <span>Sobre Mim</span>
+            </div>
+
+            <header class="page-header">
+                <h1 class="page-title loading">Sobre Mim</h1>
+                <p class="page-subtitle loading">Conheça minha trajetória, experiências e paixão por tecnologia</p>
+            </header>
+
+            <section class="personal-info loading">
+                <div class="profile-image">
+                    👨‍💻
+                </div>
+                <div class="bio-content">
+                    <h3>Olá! Eu sou um Desenvolvedor Full Stack</h3>
+                    <p>
+                        Com mais de 3 anos de experiência no desenvolvimento de aplicações web e mobile, 
+                        sou apaixonado por criar soluções tecnológicas que fazem a diferença na vida das pessoas. 
+                        Minha jornada começou com curiosidade sobre como os sites funcionam e evoluiu para 
+                        uma carreira dedicada à inovação digital.
+                    </p>
+                    <p>
+                        Especializo-me em tecnologias modernas como React, Node.js, Python e desenvolvimento mobile, 
+                        sempre buscando as melhores práticas e mantendo-me atualizado com as últimas tendências 
+                        do mercado. Acredito que o código bem escrito é uma forma de arte e que cada projeto 
+                        é uma oportunidade de aprender algo novo.
+                    </p>
+                    <p>
+                        Quando não estou programando, gosto de contribuir com projetos open source, 
+                        escrever artigos técnicos e compartilhar conhecimento com a comunidade de desenvolvedores. 
+                        Também sou um entusiasta de novas tecnologias e sempre estou explorando ferramentas 
+                        que podem melhorar meu fluxo de trabalho.
+                    </p>
+                    
+                    <div class="interests">
+                        <h4>Interesses Pessoais</h4>
+                        <div class="interest-list">
+                            <span class="interest-item">🎮 Gaming</span>
+                            <span class="interest-item">📚 Leitura Técnica</span>
+                            <span class="interest-item">🎵 Música</span>
+                            <span class="interest-item">🏃‍♂️ Corrida</span>
+                            <span class="interest-item">📷 Fotografia</span>
+                            <span class="interest-item">🌱 Open Source</span>
+                            <span class="interest-item">🤖 IA/ML</span>
+                            <span class="interest-item">☕ Café</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stats-personal loading">
+                <div class="stat-personal">
+                    <span class="stat-icon">🎯</span>
+                    <div class="stat-title">Foco em Qualidade</div>
+                    <div class="stat-desc">Código limpo e bem documentado</div>
+                </div>
+                <div class="stat-personal">
+                    <span class="stat-icon">🚀</span>
+                    <div class="stat-title">Inovação</div>
+                    <div class="stat-desc">Sempre explorando novas tecnologias</div>
+                </div>
+                <div class="stat-personal">
+                    <span class="stat-icon">🤝</span>
+                    <div class="stat-title">Colaboração</div>
+                    <div class="stat-desc">Trabalho em equipe e mentoria</div>
+                </div>
+                <div class="stat-personal">
+                    <span class="stat-icon">📈</span>
+                    <div class="stat-title">Crescimento</div>
+                    <div class="stat-desc">Aprendizado contínuo</div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title loading">Minha Trajetória</h2>
+                <div class="timeline loading">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2024 - Presente</div>
+                            <h3 class="timeline-title">Desenvolvedor Full Stack Sênior</h3>
+                            <p class="timeline-description">
+                                Liderando projetos de grande escala, mentorando desenvolvedores juniores e 
+                                implementando arquiteturas modernas com microserviços e cloud computing. 
+                                Foco em performance, escalabilidade e experiência do usuário.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2022 - 2024</div>
+                            <h3 class="timeline-title">Desenvolvedor Full Stack</h3>
+                            <p class="timeline-description">
+                                Desenvolvimento de aplicações web complexas usando React, Node.js e Python. 
+                                Implementação de APIs RESTful, integração com bancos de dados e deploy 
+                                em ambientes cloud. Participação ativa em code reviews e melhorias de processo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2021 - 2022</div>
+                            <h3 class="timeline-title">Desenvolvedor Frontend</h3>
+                            <p class="timeline-description">
+                                Especialização em desenvolvimento frontend com React e Vue.js. 
+                                Criação de interfaces responsivas, implementação de design systems 
+                                e otimização de performance. Colaboração próxima com designers UX/UI.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2020 - 2021</div>
+                            <h3 class="timeline-title">Desenvolvedor Junior</h3>
+                            <p class="timeline-description">
+                                Início da carreira profissional desenvolvendo websites e aplicações simples. 
+                                Aprendizado de boas práticas, versionamento com Git e metodologias ágeis. 
+                                Foco em HTML, CSS, JavaScript e primeiros contatos com frameworks.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2019 - 2020</div>
+                            <h3 class="timeline-title">Estudos e Projetos Pessoais</h3>
+                            <p class="timeline-description">
+                                Período intenso de aprendizado autodidata. Cursos online, projetos pessoais 
+                                e contribuições open source. Desenvolvimento dos primeiros portfolios e 
+                                aplicações para consolidar o conhecimento adquirido.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title loading">Habilidades Detalhadas</h2>
+                <div class="skills-detailed loading">
+                    <div class="skill-detailed">
+                        <h3>
+                            <span class="skill-detailed-icon">💻</span>
+                            Frontend Development
+                        </h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag-detailed">React</span>
+                            <span class="skill-tag-detailed">Next.js</span>
+                            <span class="skill-tag-detailed">Vue.js</span>
+                            <span class="skill-tag-detailed">Angular</span>
+                            <span class="skill-tag-detailed">TypeScript</span>
+                            <span class="skill-tag-detailed">Tailwind CSS</span>
+                            <span class="skill-tag-detailed">SASS</span>
+                            <span class="skill-tag-detailed">Webpack</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-detailed">
+                        <h3>
+                            <span class="skill-detailed-icon">⚙️</span>
+                            Backend Development
+                        </h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag-detailed">Node.js</span>
+                            <span class="skill-tag-detailed">Express</span>
+                            <span class="skill-tag-detailed">Python</span>
+                            <span class="skill-tag-detailed">Django</span>
+                            <span class="skill-tag-detailed">FastAPI</span>
+                            <span class="skill-tag-detailed">PostgreSQL</span>
+                            <span class="skill-tag-detailed">MongoDB</span>
+                            <span class="skill-tag-detailed">Redis</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-detailed">
+                        <h3>
+                            <span class="skill-detailed-icon">☁️</span>
+                            Cloud & DevOps
+                        </h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag-detailed">AWS</span>
+                            <span class="skill-tag-detailed">Azure</span>
+                            <span class="skill-tag-detailed">Docker</span>
+                            <span class="skill-tag-detailed">Kubernetes</span>
+                            <span class="skill-tag-detailed">CI/CD</span>
+                            <span class="skill-tag-detailed">Terraform</span>
+                            <span class="skill-tag-detailed">Nginx</span>
+                            <span class="skill-tag-detailed">Linux</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-detailed">
+                        <h3>
+                            <span class="skill-detailed-icon">📱</span>
+                            Mobile Development
+                        </h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag-detailed">React Native</span>
+                            <span class="skill-tag-detailed">Flutter</span>
+                            <span class="skill-tag-detailed">Expo</span>
+                            <span class="skill-tag-detailed">iOS</span>
+                            <span class="skill-tag-detailed">Android</span>
+                            <span class="skill-tag-detailed">PWA</span>
+                            <span class="skill-tag-detailed">Ionic</span>
+                            <span class="skill-tag-detailed">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="certifications">
+                <h2 class="section-title loading">Certificações</h2>
+                <div class="cert-grid loading">
+                    <div class="cert-card">
+                        <span class="cert-icon">🏆</span>
+                        <div class="cert-title">AWS Certified Developer</div>
+                        <div class="cert-issuer">Amazon Web Services</div>
+                        <div class="cert-date">2023</div>
+                    </div>
+                    <div class="cert-card">
+                        <span class="cert-icon">⚛️</span>
+                        <div class="cert-title">React Developer Certification</div>
+                        <div class="cert-issuer">Meta</div>
+                        <div class="cert-date">2022</div>
+                    </div>
+                    <div class="cert-card">
+                        <span class="cert-icon">🐍</span>
+                        <div class="cert-title">Python Professional</div>
+                        <div class="cert-issuer">Python Institute</div>
+                        <div class="cert-date">2022</div>
+                    </div>
+                    <div class="cert-card">
+                        <span class="cert-icon">🔒</span>
+                        <div class="cert-title">Cybersecurity Fundamentals</div>
+                        <div class="cert-issuer">CompTIA</div>
+                        <div class="cert-date">2021</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="contact-cta loading">
+                        <h2>Vamos Conversar?</h2>
+                        <p>Interessado em trabalhar comigo ou tem alguma pergunta? Ficarei feliz em conversar!</p>
+                        <div class="cta-buttons">
+                            <a href="contato.html" class="btn btn-primary">Entre em Contato →</a>
+                            <a href="index.html#projetos" class="btn btn-secondary">Ver Projetos</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="https://github.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <span>📱</span>
+                    </a>
+                    <a href="https://linkedin.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <span>💼</span>
+                    </a>
+                    <a href="https://twitter.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <span>🐦</span>
+                    </a>
+                    <a href="mailto:contato@exemplo.com" class="social-link" aria-label="Email">
+                        <span>✉️</span>
+                    </a>
+                </div>
+                <p>&copy; 2024 Desenvolvedor. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/shared.js"></script>
+</body>
+</html>

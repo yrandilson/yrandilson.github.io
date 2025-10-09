@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Desenvolvedor Full Stack</title>
+    <meta name="description" content="Entre em contato comigo para projetos, colaborações ou oportunidades. Vamos criar algo incrível juntos!">
+    <meta name="keywords" content="contato, desenvolvedor, projetos, colaboração, orçamento">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/shared.css">
+    
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .contact-item {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+            border-color: var(--primary);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+
+        .contact-details p {
+            color: rgba(248, 250, 252, 0.7);
+            margin-bottom: 5px;
+        }
+
+        .contact-details a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--accent);
+        }
+
+        .contact-form {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-form h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--light);
+            text-align: center;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(248, 250, 252, 0.5);
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .availability {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .availability-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .availability h4 {
+            color: var(--success);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .availability p {
+            color: rgba(248, 250, 252, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .faq-section {
+            margin-top: 80px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: left;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-answer-content {
+            padding: 0 25px 25px;
+            color: rgba(248, 250, 252, 0.8);
+            line-height: 1.6;
+        }
+
+        .response-time {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .response-time h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .response-time p {
+            color: rgba(248, 250, 252, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .social-contact {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .social-contact h4 {
+            color: var(--light);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .social-contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 25px;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .social-contact-link:hover {
+            background: rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+
+            .contact-item {
+                padding: 25px 20px;
+            }
+
+            .social-contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-contact-link {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .contact-details h3 {
+                font-size: 1.1rem;
+            }
+
+            .contact-form h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Success message styles */
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--success);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideInDown 0.5s ease;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Error message styles */
+        .error-message {
+            color: var(--danger);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-gradient"></div>
+    <div class="grid-background"></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">&lt;/Dev&gt;</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home" class="nav-link">Início</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="index.html#projetos" class="nav-link">Projetos</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#habilidades" class="nav-link">Habilidades</a></li>
+                <li><a href="contato.html" class="nav-link active">Contato</a></li>
+            </ul>
+            <div class="theme-toggle" id="themeToggle">
+                <span>🌙</span> Tema
+            </div>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html#home">Início</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="index.html#projetos">Projetos</a>
+            <a href="blog.html">Blog</a>
+            <a href="index.html#habilidades">Habilidades</a>
+            <a href="contato.html">Contato</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Início</a>
+                <span>→</span>
+                <span>Contato</span>
+            </div>
+
+            <header class="page-header">
+                <h1 class="page-title loading">Entre em Contato</h1>
+                <p class="page-subtitle loading">Vamos criar algo incrível juntos! Entre em contato para projetos, colaborações ou oportunidades</p>
+            </header>
+
+            <div class="contact-grid loading">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>Para projetos e oportunidades</p>
+                            <a href="mailto:contato@exemplo.com">contato@exemplo.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h3>WhatsApp</h3>
+                            <p>Resposta rápida para urgências</p>
+                            <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">+55 (11) 99999-9999</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div class="contact-details">
+                            <h3>LinkedIn</h3>
+                            <p>Networking profissional</p>
+                            <a href="https://linkedin.com/in/desenvolvedor" target="_blank" rel="noopener noreferrer">linkedin.com/in/desenvolvedor</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🌍</div>
+                        <div class="contact-details">
+                            <h3>Localização</h3>
+                            <p>São Paulo, Brasil</p>
+                            <p>Disponível para trabalho remoto</p>
+                        </div>
+                    </div>
+
+                    <div class="availability">
+                        <div class="availability-status">
+                            <div class="status-dot"></div>
+                            <h4>Disponível para Novos Projetos</h4>
+                        </div>
+                        <p>Atualmente aceitando novos clientes e projetos interessantes</p>
+                    </div>
+
+                    <div class="response-time">
+                        <h4>⚡ Tempo de Resposta</h4>
+                        <p>Geralmente respondo em até 24 horas durante dias úteis</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Envie uma Mensagem</h3>
+                    
+                    <div class="success-message" id="successMessage">
+                        <h4>✅ Mensagem Enviada com Sucesso!</h4>
+                        <p>Obrigado pelo contato! Responderei em breve.</p>
+                    </div>
+
+                    <form id="contactForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Nome *</label>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="Seu nome completo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Telefone</label>
+                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="(11) 99999-9999">
+                            </div>
+                            <div class="form-group">
+                                <label for="company" class="form-label">Empresa</label>
+                                <input type="text" id="company" name="company" class="form-input" placeholder="Nome da empresa">
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="subject" class="form-label">Assunto *</label>
+                            <select id="subject" name="subject" class="form-select" required>
+                                <option value="">Selecione o assunto</option>
+                                <option value="projeto">Novo Projeto</option>
+                                <option value="colaboracao">Colaboração</option>
+                                <option value="consultoria">Consultoria</option>
+                                <option value="emprego">Oportunidade de Emprego</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="budget" class="form-label">Orçamento Estimado</label>
+                            <select id="budget" name="budget" class="form-select">
+                                <option value="">Selecione uma faixa</option>
+                                <option value="ate-5k">Até R$ 5.000</option>
+                                <option value="5k-15k">R$ 5.000 - R$ 15.000</option>
+                                <option value="15k-30k">R$ 15.000 - R$ 30.000</option>
+                                <option value="30k-50k">R$ 30.000 - R$ 50.000</option>
+                                <option value="acima-50k">Acima de R$ 50.000</option>
+                                <option value="a-discutir">A discutir</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="message" class="form-label">Mensagem *</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Conte-me mais sobre seu projeto ou necessidade..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            Enviar Mensagem →
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="social-contact loading">
+                <h4>Ou me encontre nas redes sociais</h4>
+                <div class="social-contact-links">
+                    <a href="https://github.com" class="social-contact-link" target="_blank" rel="noopener noreferrer">
+                        <span>📱</span> GitHub
+                    </a>
+                    <a href="https://linkedin.com" class="social-contact-link" target="_blank" rel="noopener noreferrer">
+                        <span>💼</span> LinkedIn
+                    </a>
+                    <a href="https://twitter.com" class="social-contact-link" target="_blank" rel="noopener noreferrer">
+                        <span>🐦</span> Twitter
+                    </a>
+                    <a href="https://instagram.com" class="social-contact-link" target="_blank" rel="noopener noreferrer">
+                        <span>📷</span> Instagram
+                    </a>
+                </div>
+            </div>
+
+            <section class="faq-section">
+                <h2 class="section-title loading">Perguntas Frequentes</h2>
+                <div class="faq-grid loading">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Quanto tempo leva para desenvolver um projeto?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                O tempo varia conforme a complexidade do projeto. Sites simples podem levar 2-4 semanas, enquanto aplicações complexas podem levar 2-6 meses. Sempre forneço um cronograma detalhado após analisar os requisitos.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Qual é o processo de desenvolvimento?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Sigo um processo estruturado: 1) Análise de requisitos, 2) Prototipagem e design, 3) Desenvolvimento iterativo, 4) Testes e validação, 5) Deploy e entrega. Mantenho comunicação constante durante todo o processo.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Você oferece suporte pós-entrega?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Sim! Ofereço 30 dias de suporte gratuito para correções de bugs. Também disponibilizo planos de manutenção mensais para atualizações, melhorias e suporte técnico contínuo.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Trabalha com projetos de qualquer tamanho?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Trabalho tanto com projetos pequenos (landing pages, sites institucionais) quanto grandes (sistemas complexos, e-commerce). Cada projeto recebe a mesma atenção aos detalhes e qualidade.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Como funciona o pagamento?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Geralmente divido em parcelas: 50% no início e 50% na entrega. Para projetos maiores, posso dividir em mais parcelas conforme marcos do projeto. Aceito PIX, transferência bancária e cartão.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Você trabalha com equipes ou apenas sozinho?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Trabalho tanto individualmente quanto em equipe. Para projetos maiores, posso colaborar com designers, outros desenvolvedores e especialistas conforme necessário para entregar a melhor solução.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="https://github.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <span>📱</span>
+                    </a>
+                    <a href="https://linkedin.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <span>💼</span>
+                    </a>
+                    <a href="https://twitter.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <span>🐦</span>
+                    </a>
+                    <a href="mailto:contato@exemplo.com" class="social-link" aria-label="Email">
+                        <span>✉️</span>
+                    </a>
+                </div>
+                <p>&copy; 2024 Desenvolvedor. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/shared.js"></script>
+    <script>
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Contact form functionality
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = form.querySelector('.submit-btn');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Create PortfolioApp instance to use validation
+            const app = new PortfolioApp();
+            
+            // Validate form
+            if (!app.validateForm(form)) {
+                return;
+            }
+            
+            // Show loading state
+            app.showLoading(submitBtn);
+            
+            // Simulate form submission (replace with actual form submission logic)
+            setTimeout(() => {
+                // Hide loading state
+                app.hideLoading(submitBtn);
+                
+                // Show success message
+                successMessage.classList.add('show');
+                
+                // Reset form
+                form.reset();
+                
+                // Show notification
+                app.showNotification('Mensagem enviada com sucesso! Responderei em breve.', 'success');
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+            }, 2000);
+        });
+
+        // Real-time form validation
+        document.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(input => {
+            input.addEventListener('blur', function() {
+                const app = new PortfolioApp();
+                
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    app.showFieldError(this, 'Este campo é obrigatório');
+                } else if (this.type === 'email' && this.value && !app.isValidEmail(this.value)) {
+                    app.showFieldError(this, 'Por favor, insira um email válido');
+                } else {
+                    app.hideFieldError(this);
+                }
+            });
+            
+            input.addEventListener('input', function() {
+                const app = new PortfolioApp();
+                if (this.value.trim()) {
+                    app.hideFieldError(this);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
