@@ -3,16 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Mim - Desenvolvedor Full Stack</title>
-    <meta name="description" content="Conheça minha trajetória como desenvolvedor full stack, experiências, formação e paixão por tecnologia.">
-    <meta name="keywords" content="sobre, desenvolvedor, full stack, trajetória, experiência, formação">
+    <title>Sobre Mim - Infraestrutura e Observabilidade</title>
+    <meta name="description" content="Conheça minha trajetória como bolsista de Infraestrutura e Observabilidade, experiências, formação e projetos práticos em Linux, virtualização e automação.">
+    <meta name="keywords" content="sobre, infraestrutura, observabilidade, kubernetes, homelab, devops, sistemas de informação">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/shared.css">
-    
+
     <style>
+        :root {
+            --primary: #6366f1;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.5;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .loading {
+            opacity: 1;
+        }
+
+        .background-gradient {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.15), transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.12), transparent 50%);
+            z-index: -2;
+        }
+
+        .grid-background {
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(99, 102, 241, 0.06) 1px, transparent 1px),
+                               linear-gradient(90deg, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        #navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--light);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-link, .nav-links a {
+            color: rgba(248, 250, 252, 0.75);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-links a:hover, .nav-link.active {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: rgba(248, 250, 252, 0.75);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 22px;
+            height: 2px;
+            background: var(--light);
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .theme-toggle { display: none; }
+            .mobile-menu-toggle { display: flex; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .main-content {
+            padding: 50px 0 80px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(248, 250, 252, 0.6);
+            font-size: 0.9rem;
+            margin: 0 30px 40px;
+        }
+
+        .breadcrumb a {
+            color: rgba(248, 250, 252, 0.6);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--light), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle {
+            font-size: 1.15rem;
+            color: rgba(248, 250, 252, 0.7);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin: 70px 0;
+            padding: 0 30px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--light);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--light);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+        }
+
+        .btn-secondary {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: var(--light);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        .contact-cta {
+            text-align: center;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 25px;
+            padding: 60px 30px;
+        }
+
+        .contact-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-cta p {
+            color: rgba(248, 250, 252, 0.7);
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 40px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .social-link {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 50%;
+            transition: all 0.25s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(99, 102, 241, 0.2);
+            transform: translateY(-3px);
+        }
+
+        footer p {
+            color: rgba(248, 250, 252, 0.5);
+            font-size: 0.85rem;
+        }
+
         .timeline {
             position: relative;
             max-width: 800px;
@@ -449,44 +722,44 @@
 
             <header class="page-header">
                 <h1 class="page-title loading">Sobre Mim</h1>
-                <p class="page-subtitle loading">Conheça minha trajetória, experiências e paixão por tecnologia</p>
+                <p class="page-subtitle loading">Bolsista de Infraestrutura e Observabilidade, aplicando Linux, virtualização e automação em ambientes de produção</p>
             </header>
 
             <section class="personal-info loading">
                 <div class="profile-image">
-                    👨‍💻
+                    🖥️
                 </div>
                 <div class="bio-content">
-                    <h3>Olá! Eu sou um Desenvolvedor Full Stack</h3>
+                    <h3>Olá! Sou Bolsista de Infraestrutura e Observabilidade</h3>
                     <p>
-                        Com mais de 3 anos de experiência no desenvolvimento de aplicações web e mobile, 
-                        sou apaixonado por criar soluções tecnológicas que fazem a diferença na vida das pessoas. 
-                        Minha jornada começou com curiosidade sobre como os sites funcionam e evoluiu para 
-                        uma carreira dedicada à inovação digital.
+                        Atuo no Projeto IGEOS KUBES, aplicando conhecimentos práticos em ambientes Linux, 
+                        virtualização e automação para apoiar o monitoramento, os testes e a documentação 
+                        de plataformas em produção. Estou cursando Sistemas de Informação na Universidade 
+                        Federal do Ceará (UFC), Campus Quixadá.
                     </p>
                     <p>
-                        Especializo-me em tecnologias modernas como React, Node.js, Python e desenvolvimento mobile, 
-                        sempre buscando as melhores práticas e mantendo-me atualizado com as últimas tendências 
-                        do mercado. Acredito que o código bem escrito é uma forma de arte e que cada projeto 
-                        é uma oportunidade de aprender algo novo.
+                        Minha trajetória profissional tem um foco recorrente em coleta, integridade e gestão 
+                        de dados — de registros escolares e censitários a dados de campo para mapeamento de 
+                        áreas de risco — conhecimento que hoje aplico à observabilidade de infraestrutura, 
+                        onde a mesma disciplina de precisão e verificação é essencial.
                     </p>
                     <p>
-                        Quando não estou programando, gosto de contribuir com projetos open source, 
-                        escrever artigos técnicos e compartilhar conhecimento com a comunidade de desenvolvedores. 
-                        Também sou um entusiasta de novas tecnologias e sempre estou explorando ferramentas 
-                        que podem melhorar meu fluxo de trabalho.
+                        Mantenho um homelab pessoal como ambiente de experimentação contínua: servidor com 
+                        Proxmox e Docker/LXC, stack de observabilidade com Grafana, Prometheus, Loki e 
+                        OpenTelemetry, acesso remoto seguro via Cloudflare Tunnels e Tailscale, e um pipeline 
+                        de CI/CD self-hosted com Gitea orquestrado em Kubernetes (k3s).
                     </p>
                     
                     <div class="interests">
                         <h4>Interesses Pessoais</h4>
                         <div class="interest-list">
-                            <span class="interest-item">🎮 Gaming</span>
+                            <span class="interest-item">🖥️ Homelab</span>
+                            <span class="interest-item">📊 Observabilidade</span>
+                            <span class="interest-item">☸️ Kubernetes</span>
+                            <span class="interest-item">🔐 Redes Seguras</span>
+                            <span class="interest-item">🤖 IA/LLMs</span>
                             <span class="interest-item">📚 Leitura Técnica</span>
-                            <span class="interest-item">🎵 Música</span>
-                            <span class="interest-item">🏃‍♂️ Corrida</span>
-                            <span class="interest-item">📷 Fotografia</span>
                             <span class="interest-item">🌱 Open Source</span>
-                            <span class="interest-item">🤖 IA/ML</span>
                             <span class="interest-item">☕ Café</span>
                         </div>
                     </div>
@@ -495,19 +768,19 @@
 
             <section class="stats-personal loading">
                 <div class="stat-personal">
-                    <span class="stat-icon">🎯</span>
-                    <div class="stat-title">Foco em Qualidade</div>
-                    <div class="stat-desc">Código limpo e bem documentado</div>
+                    <span class="stat-icon">🖧</span>
+                    <div class="stat-title">Infraestrutura</div>
+                    <div class="stat-desc">Linux, virtualização e orquestração</div>
                 </div>
                 <div class="stat-personal">
-                    <span class="stat-icon">🚀</span>
-                    <div class="stat-title">Inovação</div>
-                    <div class="stat-desc">Sempre explorando novas tecnologias</div>
+                    <span class="stat-icon">📊</span>
+                    <div class="stat-title">Observabilidade</div>
+                    <div class="stat-desc">Monitoramento contínuo e métricas</div>
                 </div>
                 <div class="stat-personal">
-                    <span class="stat-icon">🤝</span>
-                    <div class="stat-title">Colaboração</div>
-                    <div class="stat-desc">Trabalho em equipe e mentoria</div>
+                    <span class="stat-icon">🔁</span>
+                    <div class="stat-title">Automação</div>
+                    <div class="stat-desc">CI/CD e pipelines self-hosted</div>
                 </div>
                 <div class="stat-personal">
                     <span class="stat-icon">📈</span>
@@ -517,17 +790,78 @@
             </section>
 
             <section class="section">
+                <h2 class="section-title loading">Projetos Práticos e Laboratório</h2>
+                <p class="page-subtitle loading" style="text-align:left; margin-bottom: 20px;">Infraestrutura Self-hosted (Homelab Pessoal) — 2026 a atual</p>
+                <div class="skills-detailed loading">
+                    <div class="skill-detailed">
+                        <h3>
+                            <span class="skill-detailed-icon">🗄️</span>
+                            Infraestrutura e Armazenamento
+                        </h3>
+                        <p class="timeline-description">
+                            Servidor operando com dois HDs rodando Ubuntu Server e hypervisor Proxmox para 
+                            gestão de máquinas virtuais e containers (Docker/LXC), além de integração com 
+                            ambiente local de desenvolvimento.
+                        </p>
+                    </div>
+
+                    <div class="skill-detailed">
+                        <h3>
+                            <span class="skill-detailed-icon">📊</span>
+                            Observabilidade (Foco do Projeto)
+                        </h3>
+                        <p class="timeline-description">
+                            Monitoramento contínuo de aplicações e do consumo de recursos do servidor 
+                            utilizando Grafana, Prometheus, Loki e OpenTelemetry.
+                        </p>
+                    </div>
+
+                    <div class="skill-detailed">
+                        <h3>
+                            <span class="skill-detailed-icon">🔐</span>
+                            Redes Seguras e Acesso Remoto
+                        </h3>
+                        <p class="timeline-description">
+                            Configuração de túneis seguros para acesso externo aos serviços utilizando 
+                            Cloudflare Tunnels e Tailscale, aliados a práticas de hardening (SSH, UFW, Fail2ban).
+                        </p>
+                    </div>
+
+                    <div class="skill-detailed">
+                        <h3>
+                            <span class="skill-detailed-icon">🔁</span>
+                            Orquestração e CI/CD
+                        </h3>
+                        <p class="timeline-description">
+                            Self-hosting de Gitea com pipeline de automação (Gitea Actions Runner) 
+                            orquestrado em Kubernetes (k3s).
+                        </p>
+                    </div>
+
+                    <div class="skill-detailed">
+                        <h3>
+                            <span class="skill-detailed-icon">🤖</span>
+                            Ambiente de Experimentação e IA
+                        </h3>
+                        <p class="timeline-description">
+                            Hospedagem de modelos de linguagem (LLMs) executados localmente e projetos 
+                            web para validação de testes, simulação de cargas e consumo de APIs.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
                 <h2 class="section-title loading">Minha Trajetória</h2>
                 <div class="timeline loading">
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <div class="timeline-date">2024 - Presente</div>
-                            <h3 class="timeline-title">Desenvolvedor Full Stack Sênior</h3>
+                            <div class="timeline-date">2026 - Presente</div>
+                            <h3 class="timeline-title">Bolsista de Infraestrutura e Observabilidade</h3>
                             <p class="timeline-description">
-                                Liderando projetos de grande escala, mentorando desenvolvedores juniores e 
-                                implementando arquiteturas modernas com microserviços e cloud computing. 
-                                Foco em performance, escalabilidade e experiência do usuário.
+                                Projeto IGEOS KUBES. Aplicação prática de Linux, virtualização e automação 
+                                para apoiar o monitoramento, os testes e a documentação de plataformas em produção.
                             </p>
                         </div>
                     </div>
@@ -535,12 +869,11 @@
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <div class="timeline-date">2022 - 2024</div>
-                            <h3 class="timeline-title">Desenvolvedor Full Stack</h3>
+                            <div class="timeline-date">2007, 2010, 2022</div>
+                            <h3 class="timeline-title">Recenseador e Supervisor — IBGE</h3>
                             <p class="timeline-description">
-                                Desenvolvimento de aplicações web complexas usando React, Node.js e Python. 
-                                Implementação de APIs RESTful, integração com bancos de dados e deploy 
-                                em ambientes cloud. Participação ativa em code reviews e melhorias de processo.
+                                Coleta, verificação e gestão de dados demográficos sigilosos, com atuação 
+                                também na supervisão de equipes de campo.
                             </p>
                         </div>
                     </div>
@@ -548,12 +881,11 @@
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <div class="timeline-date">2021 - 2022</div>
-                            <h3 class="timeline-title">Desenvolvedor Frontend</h3>
+                            <div class="timeline-date">Abril - Julho 2008</div>
+                            <h3 class="timeline-title">Digitador — Prefeitura Municipal de Quixadá</h3>
                             <p class="timeline-description">
-                                Especialização em desenvolvimento frontend com React e Vue.js. 
-                                Criação de interfaces responsivas, implementação de design systems 
-                                e otimização de performance. Colaboração próxima com designers UX/UI.
+                                Inserção e gestão de dados de alunos em sistemas educacionais de uma 
+                                unidade escolar, garantindo integridade e precisão dos registros.
                             </p>
                         </div>
                     </div>
@@ -561,25 +893,10 @@
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <div class="timeline-date">2020 - 2021</div>
-                            <h3 class="timeline-title">Desenvolvedor Junior</h3>
+                            <div class="timeline-date">2004 - 2008 (períodos não contínuos)</div>
+                            <h3 class="timeline-title">Agente de Combate às Endemias — Prefeitura de Ibicuitinga</h3>
                             <p class="timeline-description">
-                                Início da carreira profissional desenvolvendo websites e aplicações simples. 
-                                Aprendizado de boas práticas, versionamento com Git e metodologias ágeis. 
-                                Foco em HTML, CSS, JavaScript e primeiros contatos com frameworks.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">2019 - 2020</div>
-                            <h3 class="timeline-title">Estudos e Projetos Pessoais</h3>
-                            <p class="timeline-description">
-                                Período intenso de aprendizado autodidata. Cursos online, projetos pessoais 
-                                e contribuições open source. Desenvolvimento dos primeiros portfolios e 
-                                aplicações para consolidar o conhecimento adquirido.
+                                Coleta e registro sistemático de dados de campo para mapeamento de áreas de risco.
                             </p>
                         </div>
                     </div>
@@ -591,101 +908,141 @@
                 <div class="skills-detailed loading">
                     <div class="skill-detailed">
                         <h3>
-                            <span class="skill-detailed-icon">💻</span>
-                            Frontend Development
+                            <span class="skill-detailed-icon">🖧</span>
+                            Sistemas e Redes
                         </h3>
                         <div class="skill-tags">
-                            <span class="skill-tag-detailed">React</span>
-                            <span class="skill-tag-detailed">Next.js</span>
-                            <span class="skill-tag-detailed">Vue.js</span>
-                            <span class="skill-tag-detailed">Angular</span>
-                            <span class="skill-tag-detailed">TypeScript</span>
-                            <span class="skill-tag-detailed">Tailwind CSS</span>
-                            <span class="skill-tag-detailed">SASS</span>
-                            <span class="skill-tag-detailed">Webpack</span>
+                            <span class="skill-tag-detailed">Linux (Ubuntu Server)</span>
+                            <span class="skill-tag-detailed">Cloudflare Tunnels</span>
+                            <span class="skill-tag-detailed">Tailscale</span>
+                            <span class="skill-tag-detailed">SSH</span>
+                            <span class="skill-tag-detailed">UFW</span>
+                            <span class="skill-tag-detailed">Fail2ban</span>
                         </div>
                     </div>
 
                     <div class="skill-detailed">
                         <h3>
-                            <span class="skill-detailed-icon">⚙️</span>
-                            Backend Development
+                            <span class="skill-detailed-icon">📦</span>
+                            Virtualização e Orquestração
                         </h3>
                         <div class="skill-tags">
-                            <span class="skill-tag-detailed">Node.js</span>
-                            <span class="skill-tag-detailed">Express</span>
-                            <span class="skill-tag-detailed">Python</span>
-                            <span class="skill-tag-detailed">Django</span>
-                            <span class="skill-tag-detailed">FastAPI</span>
-                            <span class="skill-tag-detailed">PostgreSQL</span>
-                            <span class="skill-tag-detailed">MongoDB</span>
-                            <span class="skill-tag-detailed">Redis</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-detailed">
-                        <h3>
-                            <span class="skill-detailed-icon">☁️</span>
-                            Cloud & DevOps
-                        </h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag-detailed">AWS</span>
-                            <span class="skill-tag-detailed">Azure</span>
+                            <span class="skill-tag-detailed">Proxmox</span>
+                            <span class="skill-tag-detailed">LXC</span>
                             <span class="skill-tag-detailed">Docker</span>
-                            <span class="skill-tag-detailed">Kubernetes</span>
-                            <span class="skill-tag-detailed">CI/CD</span>
-                            <span class="skill-tag-detailed">Terraform</span>
-                            <span class="skill-tag-detailed">Nginx</span>
-                            <span class="skill-tag-detailed">Linux</span>
+                            <span class="skill-tag-detailed">Kubernetes (k3s)</span>
                         </div>
                     </div>
 
                     <div class="skill-detailed">
                         <h3>
-                            <span class="skill-detailed-icon">📱</span>
-                            Mobile Development
+                            <span class="skill-detailed-icon">📊</span>
+                            Observabilidade
                         </h3>
                         <div class="skill-tags">
-                            <span class="skill-tag-detailed">React Native</span>
-                            <span class="skill-tag-detailed">Flutter</span>
-                            <span class="skill-tag-detailed">Expo</span>
-                            <span class="skill-tag-detailed">iOS</span>
-                            <span class="skill-tag-detailed">Android</span>
-                            <span class="skill-tag-detailed">PWA</span>
-                            <span class="skill-tag-detailed">Ionic</span>
-                            <span class="skill-tag-detailed">Firebase</span>
+                            <span class="skill-tag-detailed">Grafana</span>
+                            <span class="skill-tag-detailed">Prometheus</span>
+                            <span class="skill-tag-detailed">Loki</span>
+                            <span class="skill-tag-detailed">OpenTelemetry</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-detailed">
+                        <h3>
+                            <span class="skill-detailed-icon">🔁</span>
+                            CI/CD e Automação
+                        </h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag-detailed">Gitea Actions</span>
+                            <span class="skill-tag-detailed">GitHub Actions</span>
+                            <span class="skill-tag-detailed">Bash</span>
+                            <span class="skill-tag-detailed">Python</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-detailed">
+                        <h3>
+                            <span class="skill-detailed-icon">🗄️</span>
+                            Bancos de Dados
+                        </h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag-detailed">PostgreSQL</span>
+                            <span class="skill-tag-detailed">MySQL</span>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section class="certifications">
-                <h2 class="section-title loading">Certificações</h2>
+                <h2 class="section-title loading">Formação Acadêmica</h2>
                 <div class="cert-grid loading">
                     <div class="cert-card">
+                        <span class="cert-icon">🎓</span>
+                        <div class="cert-title">Sistemas de Informação</div>
+                        <div class="cert-issuer">UFC, Campus Quixadá</div>
+                        <div class="cert-date">Em andamento</div>
+                    </div>
+                    <div class="cert-card">
+                        <span class="cert-icon">📘</span>
+                        <div class="cert-title">Bolsa de Iniciação Acadêmica (BIA)</div>
+                        <div class="cert-issuer">UFC, Campus Quixadá</div>
+                        <div class="cert-date">2020 - 2021</div>
+                    </div>
+                    <div class="cert-card">
+                        <span class="cert-icon">🖥️</span>
+                        <div class="cert-title">Técnico em Informática</div>
+                        <div class="cert-issuer">Instituto Federal do Ceará (IFCE)</div>
+                        <div class="cert-date">Concluído</div>
+                    </div>
+                    <div class="cert-card">
+                        <span class="cert-icon">🌱</span>
+                        <div class="cert-title">Técnico em Meio Ambiente</div>
+                        <div class="cert-issuer">Instituto Federal do Ceará (IFCE)</div>
+                        <div class="cert-date">Em andamento</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="certifications">
+                <h2 class="section-title loading">Certificações e Cursos de Extensão</h2>
+                <div class="cert-grid loading">
+                    <div class="cert-card">
+                        <span class="cert-icon">☁️</span>
+                        <div class="cert-title">AWS Academy Cloud Foundations</div>
+                        <div class="cert-issuer">Amazon Web Services (AWS)</div>
+                        <div class="cert-date">2025</div>
+                    </div>
+                    <div class="cert-card">
                         <span class="cert-icon">🏆</span>
-                        <div class="cert-title">AWS Certified Developer</div>
-                        <div class="cert-issuer">Amazon Web Services</div>
+                        <div class="cert-title">Fundamentals of Predictive Project Management</div>
+                        <div class="cert-issuer">Project Management Institute (PMI)</div>
                         <div class="cert-date">2023</div>
                     </div>
                     <div class="cert-card">
-                        <span class="cert-icon">⚛️</span>
-                        <div class="cert-title">React Developer Certification</div>
-                        <div class="cert-issuer">Meta</div>
-                        <div class="cert-date">2022</div>
+                        <span class="cert-icon">☁️</span>
+                        <div class="cert-title">Computação em Nuvem e FastAPI</div>
+                        <div class="cert-issuer">DataCamp</div>
+                        <div class="cert-date">Curso complementar</div>
+                    </div>
+                    <div class="cert-card">
+                        <span class="cert-icon">🗄️</span>
+                        <div class="cert-title">Engenharia de Dados</div>
+                        <div class="cert-issuer">DataCamp — ETL, bancos relacionais e NoSQL (MongoDB), pandas</div>
+                        <div class="cert-date">Curso complementar</div>
                     </div>
                     <div class="cert-card">
                         <span class="cert-icon">🐍</span>
-                        <div class="cert-title">Python Professional</div>
-                        <div class="cert-issuer">Python Institute</div>
-                        <div class="cert-date">2022</div>
+                        <div class="cert-title">Python (Introdutório e Intermediário)</div>
+                        <div class="cert-issuer">DataCamp</div>
+                        <div class="cert-date">Curso complementar</div>
                     </div>
-                    <div class="cert-card">
-                        <span class="cert-icon">🔒</span>
-                        <div class="cert-title">Cybersecurity Fundamentals</div>
-                        <div class="cert-issuer">CompTIA</div>
-                        <div class="cert-date">2021</div>
-                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title loading">Idiomas</h2>
+                <div class="interest-list loading">
+                    <span class="interest-item">🇬🇧 Inglês — leitura regular de documentação técnica (Prometheus, Kubernetes, OpenTelemetry, entre outros)</span>
                 </div>
             </section>
 
@@ -721,11 +1078,15 @@
                         <span>✉️</span>
                     </a>
                 </div>
-                <p>&copy; 2024 Desenvolvedor. Todos os direitos reservados.</p>
+                <p>&copy; 2026 Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <script src="assets/js/shared.js"></script>
+    <script>
+        document.getElementById('mobileMenuToggle')?.addEventListener('click', () => {
+            document.getElementById('mobileMenu')?.classList.toggle('open');
+        });
+    </script>
 </body>
 </html>
